@@ -60,7 +60,7 @@ export default function ProjectCard({ project, onClick }: Props) {
             </p>
             <h3
               className="font-semibold tracking-tight"
-              style={{ color: "#e0e6ec", fontFamily: "var(--font-outfit), sans-serif", fontSize: "1.05rem" }}
+              style={{ color: "#e0e6ec", fontFamily: "var(--font-outfit), sans-serif", fontSize: "1.2rem" }}
             >
               {project.client}
             </h3>
@@ -75,7 +75,7 @@ export default function ProjectCard({ project, onClick }: Props) {
                 padding: "2px 8px",
                 borderRadius: "2px",
                 fontFamily: "var(--font-space-mono), monospace",
-                fontSize: "0.6rem",
+                fontSize: "0.65rem",
                 whiteSpace: "nowrap",
               }}
             >
@@ -85,14 +85,14 @@ export default function ProjectCard({ project, onClick }: Props) {
         </div>
 
         <p
-          className="mb-4 text-sm leading-relaxed"
+          className="mb-4 text-base leading-relaxed"
           style={{ color: "rgba(224,230,236,0.5)" }}
         >
           {desc}
         </p>
 
         <p
-          className="font-mono text-xs"
+          className="font-mono text-sm"
           style={{ color: "rgba(224,230,236,0.25)", fontFamily: "var(--font-space-mono), monospace" }}
         >
           {project.stack}

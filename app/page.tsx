@@ -82,13 +82,13 @@ export default function Home() {
 
           {/* Subheadlines */}
           <p
-            className="mb-3 max-w-xl text-lg leading-relaxed md:text-xl"
+            className="mb-3 max-w-xl text-xl leading-relaxed md:text-2xl"
             style={{ color: "rgba(224,230,236,0.75)" }}
           >
             {t("hero.sub1")}
           </p>
           <p
-            className="mb-10 max-w-lg text-sm leading-relaxed"
+            className="mb-10 max-w-lg text-base leading-relaxed"
             style={{ color: "rgba(224,230,236,0.4)" }}
           >
             {t("hero.sub2")}
@@ -143,8 +143,8 @@ export default function Home() {
               {t("about.headline")}
             </h2>
             <p
-              className="leading-relaxed"
-              style={{ color: "rgba(224,230,236,0.55)", fontSize: "0.95rem" }}
+              className="leading-relaxed text-lg"
+              style={{ color: "rgba(224,230,236,0.55)" }}
             >
               {t("about.body")}
             </p>
@@ -154,6 +154,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-6 self-center sm:grid-cols-2">
             {[
               t("about.stat.years"),
+              t("about.stat.clients"),
               t("about.stat.nbc"),
               t("about.stat.location"),
               t("about.stat.langs"),
@@ -167,7 +168,7 @@ export default function Home() {
                 }}
               >
                 <p
-                  className="font-mono text-xs leading-relaxed"
+                  className="font-mono text-sm leading-relaxed"
                   style={{ color: "rgba(224,230,236,0.5)", fontFamily: "var(--font-space-mono), monospace" }}
                 >
                   {stat}
@@ -191,7 +192,7 @@ export default function Home() {
             // Infraestructura digital
           </p>
           <p
-            className="max-w-3xl text-lg leading-relaxed md:text-xl"
+            className="max-w-3xl text-xl leading-relaxed md:text-2xl"
             style={{ color: "rgba(224,230,236,0.6)" }}
           >
             {t("infra.definition")}
@@ -217,7 +218,7 @@ export default function Home() {
           </span>
         </h2>
         <p
-          className="mb-12 max-w-xl text-sm leading-relaxed"
+          className="mb-12 max-w-xl text-base leading-relaxed"
           style={{ color: "rgba(224,230,236,0.4)" }}
         >
           {t("services.intro")}
@@ -241,13 +242,13 @@ export default function Home() {
                 {svc.number}
               </p>
               <h3
-                className="mb-3 text-lg font-semibold"
+                className="mb-3 text-xl font-semibold"
                 style={{ color: svc.accent }}
               >
                 {svc.title}
               </h3>
               <p
-                className="mb-5 text-sm leading-relaxed"
+                className="mb-5 text-base leading-relaxed"
                 style={{ color: "rgba(224,230,236,0.5)" }}
               >
                 {svc.body}
@@ -256,7 +257,7 @@ export default function Home() {
                 {svc.bullets.map((b) => (
                   <li
                     key={b}
-                    className="font-mono text-xs"
+                    className="font-mono text-sm"
                     style={{ color: "rgba(224,230,236,0.3)", fontFamily: "var(--font-space-mono), monospace" }}
                   >
                     — {b}

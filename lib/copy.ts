@@ -11,8 +11,8 @@ export const copy: Record<string, BilingualString> = {
 
   // ─── Hero ─────────────────────────────────────────────────────────────
   "hero.eyebrow": {
-    es: "Gabriel Moreno Azcona · Ciudad de México",
-    en: "Gabriel Moreno Azcona · Mexico City",
+    es: "Argand · Ciudad de México",
+    en: "Argand · Mexico City",
   },
   "hero.headline.1": { es: "Infraestructura.", en: "Infrastructure." },
   "hero.headline.2": { es: "Sistemas.",        en: "Systems." },
@@ -38,6 +38,7 @@ export const copy: Record<string, BilingualString> = {
     en: "I'm a systems engineer with 11+ years building digital infrastructure for Mexican businesses — and six prior years in technical operations for NBC Universal and CNBC in New York. I work directly with founders and decision-makers. No intermediaries, no rotating teams, no unnecessary meetings. One person with complete visibility of your digital operation: from server to interface, from domain to AI integration.",
   },
   "about.stat.years":    { es: "11 años independiente",                 en: "11 years independent" },
+  "about.stat.clients":  { es: "25+ clientes",                          en: "25+ clients" },
   "about.stat.nbc":      { es: "NBC Universal / CNBC — Nueva York",     en: "NBC Universal / CNBC — New York" },
   "about.stat.location": { es: "Ciudad de México",                      en: "Mexico City" },
   "about.stat.langs":    { es: "Español nativo · Inglés profesional",   en: "Native Spanish · Full professional English" },
@@ -90,8 +91,8 @@ export const copy: Record<string, BilingualString> = {
   },
 
   // ─── Work ─────────────────────────────────────────────────────────────
-  "work.section.tag":   { es: "// Trabajo selecto", en: "// Selected work" },
-  "work.section.title": { es: "Proyectos.",          en: "Projects." },
+  "work.section.tag":   { es: "// 11 años · 25+ clientes", en: "// 11 years · 25+ clients" },
+  "work.section.title": { es: "Proyectos.",                 en: "Projects." },
 
   // ─── Extended client list ─────────────────────────────────────────────
   "clients.tag": { es: "// Clientes", en: "// Clients" },
@@ -143,7 +144,7 @@ export const copy: Record<string, BilingualString> = {
 
   // ─── Footer ───────────────────────────────────────────────────────────
   "footer.copy": {
-    es: "© 2026 Gabriel Alejandro Moreno Azcona · Argand · Diseñado y desarrollado con IA · CDMX",
-    en: "© 2026 Gabriel Alejandro Moreno Azcona · Argand · Designed and developed with AI · CDMX",
+    es: "© 2026 Argand · CDMX",
+    en: "© 2026 Argand · CDMX",
   },
 };
