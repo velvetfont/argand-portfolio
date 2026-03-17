@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Mono, Outfit } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -49,7 +50,10 @@ export default function RootLayout({
       <body className={`${spaceMono.variable} ${outfit.variable}`}>
         <LanguageProvider>
             <Nav />
-            {children}
+            <div className="flex min-h-screen flex-col">
+              {children}
+              <Footer />
+            </div>
           </LanguageProvider>
       </body>
     </html>
