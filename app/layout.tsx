@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono, Outfit } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n";
+import Nav from "@/components/Nav";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -46,7 +47,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${spaceMono.variable} ${outfit.variable}`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+            <Nav />
+            {children}
+          </LanguageProvider>
       </body>
     </html>
   );
