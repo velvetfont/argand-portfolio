@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "freelance Ciudad de México",
   ],
   authors: [{ name: "Gabriel Moreno Azcona" }],
+  metadataBase: new URL("https://argand.mx"),
   openGraph: {
     title: "Argand — Infraestructura Digital",
     description:
@@ -37,6 +38,12 @@ export const metadata: Metadata = {
     siteName: "Argand",
     locale: "es_MX",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Argand — Infraestructura Digital",
+    description:
+      "Bilingual technical partner for Mexican businesses. Web infrastructure, AI integration, technical consulting.",
   },
 };
 
