@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
+/* ─── Tailwind v4 theme tokens ─────────────────────────────────────── */
+@theme {
+  --color-background: #07080a;
+  --color-surface:    #0b0d10;
+  --color-amber:      #f59e0b;
+  --color-cyan:       #06b6d4;
+  --color-text:       #e0e6ec;
+
+  --font-mono: var(--font-space-mono), "Space Mono", monospace;
+  --font-sans: var(--font-outfit), "Outfit", sans-serif;
+}
+
+/* ─── CSS variables (for inline use) ───────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --border-amber: rgba(245, 158, 11, 0.08);
+  --text-muted:   rgba(224, 230, 236, 0.4);
+  --amber:        #f59e0b;
+  --cyan:         #06b6d4;
+  --bg:           #07080a;
+  --surface:      #0b0d10;
+  --text-primary: #e0e6ec;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base ──────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+/* ─── Scanline overlay ──────────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ─── Animations ────────────────────────────────────────────────────── */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes scanbar {
+  0%   { left: -100%; width: 60%; }
+  100% { left: 160%;  width: 60%; }
+}
+
+/* ─── ARGAND_ blinking cursor ───────────────────────────────────────── */
+.nav-logo-cursor::after {
+  content: '_';
+  color: var(--amber);
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Hero grid background ──────────────────────────────────────────── */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black, transparent);
+}
+
+/* ─── Outlined headline ─────────────────────────────────────────────── */
+.text-outline {
+  -webkit-text-stroke: 1px var(--amber);
+  color: transparent;
+}
+
+/* ─── Service card scan bar ─────────────────────────────────────────── */
+.service-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+  opacity: 0;
+  animation: scanbar 2.5s ease-in-out infinite;
+}
+
+.service-bar:hover::after {
+  opacity: 1;
+}
+
+/* Mobile: always animate service bars */
+@media (max-width: 768px) {
+  .service-bar::after {
+    opacity: 1;
+  }
+}
+
+/* ─── Utility: amber border ─────────────────────────────────────────── */
+.border-amber-dim {
+  border-color: var(--border-amber);
 }
