@@ -16,7 +16,7 @@ export default function ProjectCard({ project, onClick }: Props) {
 
   return (
     <article
-      className="group cursor-pointer"
+      className="project-card group cursor-pointer"
       onClick={() => onClick(project)}
       style={{
         backgroundColor: "#0b0d10",
@@ -31,19 +31,19 @@ export default function ProjectCard({ project, onClick }: Props) {
           alt={project.client}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
           unoptimized
         />
         {/* Hover overlay */}
         <div
           className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ backgroundColor: "rgba(7,8,10,0.7)" }}
+          style={{ backgroundColor: "rgba(7,8,10,0.75)" }}
         >
           <span
             className="font-mono text-xs tracking-widest"
-            style={{ color: "#f59e0b", fontFamily: "var(--font-space-mono), monospace" }}
+            style={{ color: "#06b6d4", fontFamily: "var(--font-space-mono), monospace" }}
           >
-            // VER PROYECTO
+            // VER PROYECTO →
           </span>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function ProjectCard({ project, onClick }: Props) {
           <div>
             <p
               className="mb-1 font-mono text-xs"
-              style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}
+              style={{ color: "rgba(6,182,212,0.4)", fontFamily: "var(--font-space-mono), monospace" }}
             >
               // {project.id}
             </p>
@@ -68,10 +68,10 @@ export default function ProjectCard({ project, onClick }: Props) {
 
           {project.badge && (
             <span
-              className="shrink-0 font-mono text-xs"
+              className="shrink-0 font-mono"
               style={{
-                color: "#f59e0b",
-                border: "1px solid rgba(245,158,11,0.3)",
+                color: "#06b6d4",
+                border: "1px solid rgba(6,182,212,0.3)",
                 padding: "2px 8px",
                 borderRadius: "2px",
                 fontFamily: "var(--font-space-mono), monospace",
@@ -93,7 +93,7 @@ export default function ProjectCard({ project, onClick }: Props) {
 
         <p
           className="font-mono text-sm"
-          style={{ color: "rgba(224,230,236,0.25)", fontFamily: "var(--font-space-mono), monospace" }}
+          style={{ color: "rgba(6,182,212,0.3)", fontFamily: "var(--font-space-mono), monospace" }}
         >
           {project.stack}
         </p>

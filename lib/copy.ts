@@ -41,7 +41,7 @@ export const copy: Record<string, BilingualString> = {
   "about.stat.clients":  { es: "25+ clientes",                          en: "25+ clients" },
   "about.stat.nbc":      { es: "NBC Universal / CNBC — Nueva York",     en: "NBC Universal / CNBC — New York" },
   "about.stat.location": { es: "Ciudad de México",                      en: "Mexico City" },
-  "about.stat.langs":    { es: "Español nativo · Inglés profesional",   en: "Native Spanish · Full professional English" },
+"about.stat.langs": { es: "Bilingüe nativo — Español · English", en: "Native-level bilingual — ES · EN" },
 
   // ─── Infraestructura digital definition ──────────────────────────────
   "infra.definition": {
