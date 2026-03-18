@@ -22,27 +22,30 @@ export default function Nav() {
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
-      style={{ borderBottom: "1px solid rgba(245,158,11,0.08)", backgroundColor: "rgba(7,8,10,0.85)" }}
+      style={{ borderBottom: "1px solid rgba(245,158,11,0.08)", backgroundColor: "rgba(7,8,10,0.9)" }}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
 
-        {/* Logo */}
+        {/* Logo with glitch effect */}
         <Link
           href="/"
-          className="nav-logo-cursor font-mono text-base font-bold tracking-widest"
+          className="glitch font-mono text-lg font-bold tracking-widest"
+
+
+          data-text="ARGAND"
           style={{ color: "#f59e0b", fontFamily: "var(--font-space-mono), monospace" }}
           onClick={() => setMenuOpen(false)}
         >
-          ARGAND
-        </Link>
+ARGAND<span style={{ animation: "blink 1s step-end infinite", color: "#f59e0b" }}>_</span>
+</Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-10 md:flex">
           {mainLinks.map(({ key, href }) => (
             <Link
               key={key}
               href={href}
-              className="font-mono text-sm tracking-wider transition-colors hover:text-amber-400"
+              className="font-mono text-sm tracking-wider transition-all duration-200 hover:text-amber-400 hover:tracking-widest"
               style={{
                 color: "rgba(224,230,236,0.7)",
                 fontFamily: "var(--font-space-mono), monospace",
@@ -55,7 +58,7 @@ export default function Nav() {
             <Link
               key={key}
               href={href}
-              className="font-mono text-sm tracking-wider transition-colors hover:text-amber-400"
+              className="font-mono text-sm tracking-wider transition-all duration-200 hover:text-cyan-400"
               style={{
                 color: "rgba(224,230,236,0.25)",
                 fontFamily: "var(--font-space-mono), monospace",
@@ -68,12 +71,12 @@ export default function Nav() {
           {/* Language toggle */}
           <button
             onClick={() => setLang(lang === "es" ? "en" : "es")}
-            className="font-mono text-sm tracking-wider transition-colors hover:text-amber-400"
+            className="font-mono text-sm tracking-wider transition-all duration-200 hover:border-cyan-400 hover:text-cyan-400"
             style={{
               color: "#f59e0b",
               fontFamily: "var(--font-space-mono), monospace",
               border: "1px solid rgba(245,158,11,0.3)",
-              padding: "4px 12px",
+              padding: "5px 14px",
               borderRadius: "2px",
             }}
           >
@@ -90,7 +93,7 @@ export default function Nav() {
               color: "#f59e0b",
               fontFamily: "var(--font-space-mono), monospace",
               border: "1px solid rgba(245,158,11,0.3)",
-              padding: "4px 12px",
+              padding: "5px 14px",
               borderRadius: "2px",
             }}
           >
@@ -103,21 +106,21 @@ export default function Nav() {
             className="flex flex-col gap-[5px] p-1"
           >
             <span
-              className="block h-px w-5 transition-all"
+              className="block h-px w-6 transition-all duration-300"
               style={{
                 backgroundColor: "#f59e0b",
                 transform: menuOpen ? "rotate(45deg) translate(4px, 4px)" : "none",
               }}
             />
             <span
-              className="block h-px w-5 transition-all"
+              className="block h-px w-6 transition-all duration-300"
               style={{
                 backgroundColor: "#f59e0b",
                 opacity: menuOpen ? 0 : 1,
               }}
             />
             <span
-              className="block h-px w-5 transition-all"
+              className="block h-px w-6 transition-all duration-300"
               style={{
                 backgroundColor: "#f59e0b",
                 transform: menuOpen ? "rotate(-45deg) translate(4px, -4px)" : "none",
@@ -130,35 +133,37 @@ export default function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div
-          className="border-t px-6 py-6 md:hidden"
+          className="border-t px-6 py-8 md:hidden"
           style={{
             borderColor: "rgba(245,158,11,0.08)",
             backgroundColor: "rgba(7,8,10,0.97)",
           }}
         >
-          <div className="flex flex-col gap-6">
-            {mainLinks.map(({ key, href }) => (
+          <div className="flex flex-col gap-8">
+            {mainLinks.map(({ key, href }, i) => (
               <Link
                 key={key}
                 href={href}
-                className="font-mono text-base tracking-wider"
+                className="font-mono text-base tracking-wider transition-colors hover:text-amber-400"
                 style={{
                   color: "rgba(224,230,236,0.8)",
                   fontFamily: "var(--font-space-mono), monospace",
+                  animationDelay: `${i * 0.05}s`,
                 }}
                 onClick={() => setMenuOpen(false)}
               >
                 // {t(key)}
               </Link>
             ))}
-            {dimLinks.map(({ key, href }) => (
+            {dimLinks.map(({ key, href }, i) => (
               <Link
                 key={key}
                 href={href}
-                className="font-mono text-base tracking-wider"
+                className="font-mono text-base tracking-wider transition-colors hover:text-cyan-400"
                 style={{
                   color: "rgba(224,230,236,0.25)",
                   fontFamily: "var(--font-space-mono), monospace",
+                  animationDelay: `${(i + mainLinks.length) * 0.05}s`,
                 }}
                 onClick={() => setMenuOpen(false)}
               >

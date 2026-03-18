@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
@@ -33,9 +33,93 @@ const clients = [
   { name: "Peek Toys",                     url: "https://peektoys.com" },
 ];
 
+const MATRIX_CHARS = "アイウエオカキクケコサシスセソタチツテトナニヌネノ01";
+const MATRIX_COLS = 20;
+
+function MatrixRain() {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  return (
+    <div className="matrix-bg">
+      {Array.from({ length: MATRIX_COLS }).map((_, i) => (
+        <div
+          key={i}
+          className="matrix-col"
+          style={{
+            left: `${(i / MATRIX_COLS) * 100}%`,
+            animationDuration: `${6 + Math.random() * 8}s`,
+            animationDelay: `${Math.random() * 6}s`,
+          }}
+        >
+          {Array.from({ length: 20 }).map(() =>
+            MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)]
+          ).join("")}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function useScrollReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
+function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        setDisplayed(text.slice(0, i + 1));
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          setTimeout(() => setDone(true), 500);
+        }
+      }, 45);
+      return () => clearInterval(interval);
+    }, delay);
+    return () => clearTimeout(timeout);
+  }, [text, delay]);
+
+  return (
+    <span className={done ? "typewriter-done" : "typewriter"}>
+      {displayed}
+    </span>
+  );
+}
+
 export default function Home() {
   const { t, lang } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [heroReady, setHeroReady] = useState(false);
+  useScrollReveal();
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroReady(true), 100);
+    return () => clearTimeout(t);
+  }, []);
 
   const services = [
     {
@@ -66,25 +150,45 @@ export default function Home() {
       {/* ── 1. HERO ──────────────────────────────────────────────────── */}
       <section className="relative flex min-h-screen items-center overflow-hidden pt-16">
         <div className="hero-grid absolute inset-0" />
+        <MatrixRain />
+
         <div className="relative mx-auto w-full max-w-6xl px-6 py-24 md:py-32">
-          <p
-            className="mb-6 font-mono text-sm tracking-widest"
-            style={{ color: "rgba(245,158,11,0.6)", fontFamily: "var(--font-space-mono), monospace" }}
-          >
-            // {t("hero.eyebrow")}
-          </p>
+          {heroReady && (
+            <p
+              className="mb-6 font-mono text-sm tracking-widest"
+              style={{ color: "rgba(245,158,11,0.6)", fontFamily: "var(--font-space-mono), monospace",
+                animation: "fadeInLeft 0.6s ease both" }}
+            >
+              // {t("hero.eyebrow")}
+            </p>
+          )}
+
           <h1 className="mb-8 leading-none tracking-tight" style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)" }}>
-            <span className="block" style={{ color: "#e0e6ec" }}>{t("hero.headline.1")}</span>
-            <span className="block text-outline" style={{ WebkitTextStroke: "1px rgba(224,230,236,0.35)", color: "transparent" }}>{t("hero.headline.2")}</span>
-            <span className="block" style={{ color: "#f59e0b" }}>{t("hero.headline.3")}</span>
+            <span className="block" style={{ color: "#e0e6ec" }}>
+              {heroReady ? <TypewriterText text={t("hero.headline.1")} delay={300} /> : null}
+            </span>
+            <span className="block text-outline" style={{ WebkitTextStroke: "1px rgba(224,230,236,0.35)", color: "transparent" }}>
+              {heroReady ? <TypewriterText text={t("hero.headline.2")} delay={900} /> : null}
+            </span>
+            <span className="block" style={{ color: "#f59e0b" }}>
+              {heroReady ? <TypewriterText text={t("hero.headline.3")} delay={1500} /> : null}
+            </span>
           </h1>
-          <p className="mb-3 max-w-xl text-xl leading-relaxed md:text-2xl" style={{ color: "rgba(224,230,236,0.75)" }}>
+
+          <p
+            className="mb-3 max-w-xl text-xl leading-relaxed md:text-2xl"
+            style={{ color: "rgba(224,230,236,0.75)", animation: "fadeInUp 0.8s ease 1.8s both" }}
+          >
             {t("hero.sub1")}
           </p>
-          <p className="mb-10 max-w-lg text-base leading-relaxed" style={{ color: "rgba(224,230,236,0.4)" }}>
+          <p
+            className="mb-10 max-w-lg text-base leading-relaxed"
+            style={{ color: "rgba(224,230,236,0.4)", animation: "fadeInUp 0.8s ease 2s both" }}
+          >
             {t("hero.sub2")}
           </p>
-          <div className="flex flex-wrap gap-4">
+
+          <div className="flex flex-wrap gap-4" style={{ animation: "fadeInUp 0.8s ease 2.2s both" }}>
             <Link
               href="/work"
               className="font-mono text-sm transition-opacity hover:opacity-75"
@@ -94,7 +198,7 @@ export default function Home() {
             </Link>
             <Link
               href="/contact"
-              className="font-mono text-sm transition-colors hover:border-amber-400 hover:text-amber-400"
+              className="font-mono text-sm transition-all hover:border-cyan-400 hover:text-cyan-400"
               style={{ color: "rgba(224,230,236,0.7)", border: "1px solid rgba(224,230,236,0.2)", padding: "12px 28px", borderRadius: "2px", fontFamily: "var(--font-space-mono), monospace" }}
             >
               {t("hero.cta.contact")}
@@ -106,7 +210,7 @@ export default function Home() {
       {/* ── 2. ABOUT ─────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-2 md:gap-20">
-          <div>
+          <div className="reveal">
             <p className="mb-4 font-mono text-xs tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
               // About
             </p>
@@ -124,8 +228,16 @@ export default function Home() {
               t("about.stat.nbc"),
               t("about.stat.location"),
               t("about.stat.langs"),
-            ].map((stat) => (
-              <div key={stat} className="p-4" style={{ borderLeft: "2px solid rgba(245,158,11,0.3)", backgroundColor: "#0b0d10" }}>
+            ].map((stat, i) => (
+              <div
+                key={stat}
+                className="reveal p-4"
+                style={{
+                  borderLeft: "2px solid rgba(245,158,11,0.3)",
+                  backgroundColor: "#0b0d10",
+                  transitionDelay: `${i * 0.08}s`,
+                }}
+              >
                 <p className="font-mono text-sm leading-relaxed" style={{ color: "rgba(224,230,236,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
                   {stat}
                 </p>
@@ -136,7 +248,7 @@ export default function Home() {
       </section>
 
       {/* ── 3. INFRAESTRUCTURA DIGITAL DEFINITION ────────────────────── */}
-      <section className="px-6 py-16" style={{ borderTop: "1px solid rgba(245,158,11,0.08)", borderBottom: "1px solid rgba(245,158,11,0.08)" }}>
+      <section className="reveal px-6 py-16" style={{ borderTop: "1px solid rgba(245,158,11,0.08)", borderBottom: "1px solid rgba(245,158,11,0.08)" }}>
         <div className="mx-auto max-w-6xl">
           <p className="mb-3 font-mono text-xs tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
             // Infraestructura digital
@@ -149,22 +261,30 @@ export default function Home() {
 
       {/* ── 4. SERVICES PREVIEW ──────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <p className="mb-2 font-mono text-xs tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
-          // {lang === "es" ? "Servicios" : "Services"}
-        </p>
-        <h2 className="mb-4 text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: "#e0e6ec" }}>
-          {t("services.headline")}{" "}
-          <span style={{ WebkitTextStroke: "1px rgba(245,158,11,0.5)", color: "transparent" }}>{t("services.headline.verb")}</span>
-        </h2>
-        <p className="mb-12 max-w-xl text-base leading-relaxed" style={{ color: "rgba(224,230,236,0.4)" }}>
-          {t("services.intro")}
-        </p>
+        <div className="reveal">
+          <p className="mb-2 font-mono text-xs tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
+            // {lang === "es" ? "Servicios" : "Services"}
+          </p>
+          <h2 className="mb-4 text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: "#e0e6ec" }}>
+            {t("services.headline")}{" "}
+            <span style={{ WebkitTextStroke: "1px rgba(245,158,11,0.5)", color: "transparent" }}>{t("services.headline.verb")}</span>
+          </h2>
+          <p className="mb-12 max-w-xl text-base leading-relaxed" style={{ color: "rgba(224,230,236,0.4)" }}>
+            {t("services.intro")}
+          </p>
+        </div>
+
         <div className="grid gap-6 md:grid-cols-3">
-          {services.map((svc) => (
+          {services.map((svc, i) => (
             <div
               key={svc.number}
-              className="service-bar p-6"
-              style={{ backgroundColor: "#0b0d10", border: "1px solid rgba(245,158,11,0.08)", borderRadius: "2px" }}
+              className="service-bar reveal p-6"
+              style={{
+                backgroundColor: "#0b0d10",
+                border: "1px solid rgba(245,158,11,0.08)",
+                borderRadius: "2px",
+                transitionDelay: `${i * 0.1}s`,
+              }}
             >
               <p className="mb-3 font-mono text-xs" style={{ color: svc.accent === "#06b6d4" ? "rgba(6,182,212,0.5)" : "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
                 {svc.number}
@@ -181,6 +301,7 @@ export default function Home() {
             </div>
           ))}
         </div>
+
         <div className="mt-10 text-right">
           <Link href="/services" className="font-mono text-xs tracking-wider transition-colors hover:text-amber-400" style={{ color: "rgba(245,158,11,0.6)", fontFamily: "var(--font-space-mono), monospace" }}>
             {lang === "es" ? "Ver todos los servicios →" : "View all services →"}
@@ -191,12 +312,14 @@ export default function Home() {
       {/* ── 5. SELECTED WORK ─────────────────────────────────────────── */}
       <section className="px-6 py-24 md:py-32" style={{ borderTop: "1px solid rgba(245,158,11,0.08)" }}>
         <div className="mx-auto max-w-6xl">
-          <p className="mb-2 font-mono text-xs tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
-            {t("work.section.tag")}
-          </p>
-          <h2 className="mb-12 text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: "#e0e6ec" }}>
-            {t("work.section.title")}
-          </h2>
+          <div className="reveal">
+            <p className="mb-2 font-mono text-xs tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
+              {t("work.section.tag")}
+            </p>
+            <h2 className="mb-12 text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: "#e0e6ec" }}>
+              {t("work.section.title")}
+            </h2>
+          </div>
           <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} onClick={setSelectedProject} />
@@ -207,35 +330,35 @@ export default function Home() {
 
       {/* ── 6. EXTENDED CLIENT LIST ──────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-32">
-        <p className="mb-6 font-mono text-sm tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
+        <p className="reveal mb-6 font-mono text-sm tracking-widest" style={{ color: "rgba(245,158,11,0.5)", fontFamily: "var(--font-space-mono), monospace" }}>
           {t("clients.tag")}
         </p>
-        <div className="flex flex-wrap gap-2">
-        {clients.map((client) => (
-  <a
-  key={client.name}
-  href={client.url}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="font-mono text-sm transition-colors hover:text-amber-400"
-  style={{
-    color: "rgba(224,230,236,0.35)",
-    border: "1px solid rgba(245,158,11,0.08)",
-    padding: "6px 14px",
-    borderRadius: "2px",
-    fontFamily: "var(--font-space-mono), monospace",
-    textDecoration: "none",
-  }}
->
-  {client.name}
-</a>
-))}
+        <div className="reveal flex flex-wrap gap-2">
+          {clients.map((client) => (
+            <a
+              key={client.name}
+              href={client.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-sm transition-all duration-200 hover:text-cyan-400 hover:border-cyan-400"
+              style={{
+                color: "rgba(224,230,236,0.35)",
+                border: "1px solid rgba(245,158,11,0.08)",
+                padding: "6px 14px",
+                borderRadius: "2px",
+                fontFamily: "var(--font-space-mono), monospace",
+                textDecoration: "none",
+              }}
+            >
+              {client.name}
+            </a>
+          ))}
         </div>
       </section>
 
       {/* ── 7. CTA STRIP ─────────────────────────────────────────────── */}
       <section
-        className="px-6 py-20"
+        className="reveal px-6 py-20"
         style={{ borderTop: "1px solid rgba(245,158,11,0.08)", background: "linear-gradient(180deg, #07080a 0%, #0b0d10 100%)" }}
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center md:flex-row md:justify-between md:text-left">
