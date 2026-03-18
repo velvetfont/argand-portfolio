@@ -24,12 +24,12 @@ export default function Nav() {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
       style={{ borderBottom: "1px solid rgba(245,158,11,0.08)", backgroundColor: "rgba(7,8,10,0.85)" }}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
 
         {/* Logo */}
         <Link
           href="/"
-          className="nav-logo-cursor font-mono text-sm font-bold tracking-widest"
+          className="nav-logo-cursor font-mono text-base font-bold tracking-widest"
           style={{ color: "#f59e0b", fontFamily: "var(--font-space-mono), monospace" }}
           onClick={() => setMenuOpen(false)}
         >
@@ -42,7 +42,7 @@ export default function Nav() {
             <Link
               key={key}
               href={href}
-              className="font-mono text-xs tracking-wider transition-colors hover:text-amber-400"
+              className="font-mono text-sm tracking-wider transition-colors hover:text-amber-400"
               style={{
                 color: "rgba(224,230,236,0.7)",
                 fontFamily: "var(--font-space-mono), monospace",
@@ -55,7 +55,7 @@ export default function Nav() {
             <Link
               key={key}
               href={href}
-              className="font-mono text-xs tracking-wider transition-colors hover:text-amber-400"
+              className="font-mono text-sm tracking-wider transition-colors hover:text-amber-400"
               style={{
                 color: "rgba(224,230,236,0.25)",
                 fontFamily: "var(--font-space-mono), monospace",
@@ -68,12 +68,12 @@ export default function Nav() {
           {/* Language toggle */}
           <button
             onClick={() => setLang(lang === "es" ? "en" : "es")}
-            className="font-mono text-xs tracking-wider transition-colors hover:text-amber-400"
+            className="font-mono text-sm tracking-wider transition-colors hover:text-amber-400"
             style={{
               color: "#f59e0b",
               fontFamily: "var(--font-space-mono), monospace",
               border: "1px solid rgba(245,158,11,0.3)",
-              padding: "3px 10px",
+              padding: "4px 12px",
               borderRadius: "2px",
             }}
           >
@@ -85,12 +85,12 @@ export default function Nav() {
         <div className="flex items-center gap-4 md:hidden">
           <button
             onClick={() => setLang(lang === "es" ? "en" : "es")}
-            className="font-mono text-xs tracking-wider"
+            className="font-mono text-sm tracking-wider"
             style={{
               color: "#f59e0b",
               fontFamily: "var(--font-space-mono), monospace",
               border: "1px solid rgba(245,158,11,0.3)",
-              padding: "3px 10px",
+              padding: "4px 12px",
               borderRadius: "2px",
             }}
           >
@@ -141,7 +141,7 @@ export default function Nav() {
               <Link
                 key={key}
                 href={href}
-                className="font-mono text-sm tracking-wider"
+                className="font-mono text-base tracking-wider"
                 style={{
                   color: "rgba(224,230,236,0.8)",
                   fontFamily: "var(--font-space-mono), monospace",
@@ -155,7 +155,7 @@ export default function Nav() {
               <Link
                 key={key}
                 href={href}
-                className="font-mono text-sm tracking-wider"
+                className="font-mono text-base tracking-wider"
                 style={{
                   color: "rgba(224,230,236,0.25)",
                   fontFamily: "var(--font-space-mono), monospace",
