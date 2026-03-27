@@ -31,8 +31,8 @@ export const projects: Project[] = [
     client: "Foro Boca",
     url:    "https://foroboca.mx",
     stack:  "WordPress",
-    descEs: "Infraestructura digital para uno de los festivales de música clásica más importantes de México. Cliente activo — Boca del Río, Veracruz.",
-    descEn: "Digital infrastructure for one of Mexico's most important classical music festivals. Active retainer client — Boca del Río, Veracruz.",
+    descEs: "Infraestructura digital para el foro de música y artes desarrollado por Rojkind Arquitectos en Boca del Río, Veracruz. Cliente activo.",
+    descEn: "Digital infrastructure for the music and arts venue developed by Rojkind Arquitectos in Boca del Río, Veracruz. Active retainer client.",
   },
   {
     id:     "004",
