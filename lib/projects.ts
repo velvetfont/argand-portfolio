@@ -15,8 +15,8 @@ export const projects: Project[] = [
     client: "Bala.mx",
     url:    "https://bala.mx",
     stack:  "Shopify",
-    descEs: "Plataforma de e-commerce para marca mexicana de lifestyle y deporte. Desarrollo de tema personalizado y optimización de rendimiento.",
-    descEn: "E-commerce platform for a Mexican lifestyle and sports brand. Custom theme development and performance optimization.",
+    descEs: "Infraestructura digital y e-commerce para una de las agencias de branding más importantes de México. Desarrollo de tema personalizado y optimización de rendimiento.",
+    descEn: "Digital infrastructure and e-commerce for one of Mexico's most important branding agencies. Custom theme development and performance optimization.",
   },
   {
     id:     "002",

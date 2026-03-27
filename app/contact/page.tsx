@@ -262,11 +262,11 @@ export default function ContactPage() {
               // Email
             </p>
             <a
-              href="mailto:gabo@argand.mx"
+              href="mailto:gabriel@argand.mx"
               className="text-sm transition-colors hover:text-amber-400"
               style={{ color: "rgba(224,230,236,0.55)" }}
             >
-              gabo@argand.mx
+              gabriel@argand.mx
             </a>
           </div>
         </div>

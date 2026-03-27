@@ -18,8 +18,8 @@ export const copy: Record<string, BilingualString> = {
   "hero.headline.2": { es: "Sistemas.",        en: "Systems." },
   "hero.headline.3": { es: "IA.",              en: "AI." },
   "hero.sub1": {
-    es: "Socio técnico bilingüe para empresas mexicanas que toman en serio su operación digital.",
-    en: "Bilingual technical partner for Mexican businesses that take their digital operation seriously.",
+    es: "Socio técnico bilingüe para empresas mexicanas e internacionales que toman en serio su operación digital.",
+    en: "Bilingual technical partner for Mexican and international businesses that take their digital operation seriously.",
   },
   "hero.sub2": {
     es: "Ingeniero de sistemas. Constructor de infraestructura. Socio de integración de IA.",
@@ -34,8 +34,8 @@ export const copy: Record<string, BilingualString> = {
     en: "Not an agency. Not a catalog freelancer.",
   },
   "about.body": {
-    es: "Soy ingeniero en sistemas con más de 11 años construyendo infraestructura digital para empresas mexicanas — y seis años previos en operaciones técnicas para NBC Universal y CNBC en Nueva York. Trabajo directamente con fundadores y tomadores de decisiones. Sin intermediarios, sin equipos que rotan, sin juntas innecesarias. Una sola persona con visión completa de tu operación digital: desde el servidor hasta la interfaz, desde el dominio hasta la integración de IA.",
-    en: "I'm a systems engineer with 11+ years building digital infrastructure for Mexican businesses — and six prior years in technical operations for NBC Universal and CNBC in New York. I work directly with founders and decision-makers. No intermediaries, no rotating teams, no unnecessary meetings. One person with complete visibility of your digital operation: from server to interface, from domain to AI integration.",
+    es: "Soy ingeniero en sistemas con más de 11 años construyendo infraestructura digital para empresas mexicanas e internacionales — y seis años previos en operaciones técnicas para NBC Universal y CNBC en Nueva York. Trabajo directamente con fundadores y tomadores de decisiones. Sin intermediarios, sin equipos que rotan, sin juntas innecesarias. Una sola persona con visión completa de tu operación digital: desde el servidor hasta la interfaz, desde el dominio hasta la integración de IA.",
+    en: "I'm a systems engineer with 11+ years building digital infrastructure for Mexican and international businesses — and six prior years in technical operations for NBC Universal and CNBC in New York. I work directly with founders and decision-makers. No intermediaries, no rotating teams, no unnecessary meetings. One person with complete visibility of your digital operation: from server to interface, from domain to AI integration.",
   },
   "about.stat.years":    { es: "11 años independiente",                 en: "11 years independent" },
   "about.stat.clients":  { es: "25+ clientes",                          en: "25+ clients" },

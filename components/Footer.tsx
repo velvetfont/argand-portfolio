@@ -35,7 +35,7 @@ export default function Footer() {
             // GitHub
           </a>
           <a
-            href="mailto:gabo@argand.mx"
+            href="mailto:gabriel@argand.mx"
             className="font-mono text-xs transition-colors hover:text-amber-400"
             style={{
               color: "rgba(224,230,236,0.35)",
